@@ -7,14 +7,19 @@ def sum(arr)
   if arr.empty?
     return 0
   else
-    res = 0
-    arr.each {|a| res=res+a}
+    return arr.sum
   end
-  return res
 end
 
 def max_2_sum(arr)
   # YOUR CODE HERE
+  if arr.empty?
+    return 0
+  elsif arr.one?
+    return arr[0]
+  else
+    return arr.max(2).sum
+  end
 end
 
 def sum_to_n?(arr, number)
