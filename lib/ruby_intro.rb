@@ -4,6 +4,13 @@
 
 def sum(arr)
   # YOUR CODE HERE
+  if arr.empty?
+    return 0
+  else
+    res = 0
+    arr.each {|a| res=res+a}
+  end
+  return res
 end
 
 def max_2_sum(arr)
