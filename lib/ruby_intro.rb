@@ -31,9 +31,7 @@ def sum_to_n?(arr, number)
   else
     for i in arr
       if arr.include?(number-i)
-        if number-i != i
-          return true
-        end
+        return true unless number-i == i
       end
     end
     return false
@@ -44,25 +42,24 @@ end
 
 def hello(name)
   # YOUR CODE HERE
-  return "Hello, "+name
+  return "Hello, " + name
 end
 
 def starts_with_consonant?(string)
   # YOUR CODE HERE
-  return string[0] =~ /[b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z]/
+  if string.upcase[0] =~ /[A-Z]/
+    return string.upcase[0] =~ /[^AEIOU]/
+  end
 end
 
 def binary_multiple_of_4?(string)
   # YOUR CODE HERE
-  if string =~ /[^0-1]/
-    return false
-  elsif string.empty?
+  if string.empty? or string =~ /[^0-1]/
     return false
   elsif string.to_i(2) % 4 == 0
     return true
-  else
-    return false
   end
+  return false
 end
 
 # Part 3
@@ -70,4 +67,19 @@ end
 # Object representing a book
 class BookInStock
   # YOUR CODE HERE
+  attr_accessor :isbn
+  attr_accessor :price
+
+  def initialize(isbn, price)
+    @isbn = isbn
+    @price = price
+    
+    if @isbn.empty? or @price <= 0
+      raise ArgumentError
+    end
+  end
+
+  def price_as_string
+    return "$%0.2f" % @price
+  end
 end
